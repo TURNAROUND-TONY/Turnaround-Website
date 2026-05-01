@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+const PRINCIPLES = [
+  { num: "01", title: "Architecture first", body: "We design for the catalogue you'll have in three years, not the one you have today. Scale should be a default, not a refactor." },
+  { num: "02", title: "Risk-controlled execution", body: "Every change has a checklist, an owner, and a rollback plan. Cutovers are choreographed against live traffic, not improvised." },
+  { num: "03", title: "100% data integrity", body: "Products, variants, customers, orders — reconciled to the row. We don't ship migrations until parity is signed off in writing." },
+  { num: "04", title: "Upfront ownership", body: "One senior lead. One source of truth. No account-manager telephone game between you and the engineers building your store." },
+  { num: "05", title: "No shortcuts", body: "SEO, redirects, schema, structured data, accessibility — validated against production data. Cutting corners isn't faster, it's just expensive later." },
+  { num: "06", title: "Durable partnerships", body: "We stay through the first 90 days post-launch. Stabilisation isn't an upsell — it's how the work is finished." },
+];
+
+const STATS = [
+  { num: "5,100+", label: "Shopify stores delivered" },
+  { num: "150+",   label: "Successful migrations" },
+  { num: "90",     label: "Day post-launch ownership" },
+  { num: "100%",   label: "Data integrity record" },
+];
+
+const AboutPage = () => (
+  <>
+    <NavBar active="about" />
+    <main data-screen-label="About">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— About</span>
+            <h1>The studio<br />for stores that<br /><em>can't break.</em></h1>
+          </div>
+          <p className="lede">
+            Turnaround is a migration-first Shopify Plus partner. We exist for one reason: to move enterprise commerce stores between platforms without losing data, rankings, or revenue. That's the entire job.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="about-intro">
+            <div>
+              <span className="eyebrow" style={{ display: "block", marginBottom: 20 }}>— Origin</span>
+              <h2 className="display">We started Turnaround<br />because <em>migrations<br />kept going wrong.</em></h2>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              <p>Across hundreds of Shopify projects, the same pattern repeated. Brilliant brands signed a migration contract, the cutover went sideways, and a quarter of revenue evaporated while the agency vanished into a Slack channel that nobody answered.</p>
+              <p>We built Turnaround to do the unglamorous work well: catalogue audits, redirect mapping, reconciliation runbooks, mock cutovers, and the 90-day stabilisation that everyone promises and almost nobody delivers. The TURNAROUND framework is the version of that work we've codified — written down, repeatable, and the same on every engagement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">01 — By the numbers</span>
+            <span className="ttl">A track record, not a pitch</span>
+          </div>
+          <div className="stats-block" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+            {STATS.map((s, i) => (
+              <div className="stat" key={i}>
+                <span className="stat-num display">{s.num}</span>
+                <span className="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">02 — Principles</span>
+            <span className="ttl">How we work</span>
+          </div>
+          <div className="principles">
+            {PRINCIPLES.map((p, i) => (
+              <div className="principle" key={i}>
+                <span className="num">{p.num}</span>
+                <h3><em>{p.title}</em></h3>
+                <p>{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="about-intro" style={{ borderBottom: 0 }}>
+            <div>
+              <span className="eyebrow" style={{ display: "block", marginBottom: 20 }}>— Who we work with</span>
+              <h2 className="display">Mid-market and<br />enterprise merchants<br /><em>with stakes.</em></h2>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              <p>Our best engagements share a profile: a brand that's outgrown its current platform, an executive team that takes data integrity seriously, and a migration window where downtime simply isn't an option.</p>
+              <p>We're a focused studio, not a body shop. We take a small number of engagements per quarter so that every project gets a senior team. If your replatform isn't a top-three priority for our quarter, we won't pretend otherwise — and we'll point you to a partner who can give it that attention.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{ background: "var(--paper)", color: "var(--ink)", border: "1px solid var(--hairline)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Start here</span>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>Tell us about<br /><em>your platform.</em></h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+              30 minutes. We'll review where you are, flag the risks, and tell you honestly whether a migration makes sense — and what a sensible plan would look like.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn-primary">Book a migration audit <span className="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AboutPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

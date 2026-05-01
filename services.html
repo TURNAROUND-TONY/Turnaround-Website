@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+const SERVICES_DETAIL = [
+  {
+    num: "01 / Migrations",
+    title: "Platform Migrations",
+    summary: "Risk-controlled replatforms from BigCommerce, Magento, Salesforce Commerce, WooCommerce, and custom stacks to Shopify Plus.",
+    points: [
+      "End-to-end migration planning & architecture",
+      "SEO-safe URL mapping and redirect validation",
+      "100% data integrity across products, variants, customers, orders",
+      "Checklist-driven cutovers with rollback plans",
+      "Pre-launch operational parity validation",
+      "Fulfilment, tax, and pricing alignment",
+    ],
+  },
+  {
+    num: "02 / Builds",
+    title: "Shopify Plus Theme & Storefront Development",
+    summary: "Production-grade B2B and B2C storefronts. Custom themes built for performance, scale, and Shopify-native maintainability.",
+    points: [
+      "Custom Shopify & Shopify Plus theme development",
+      "Complex product, pricing, and collection logic",
+      "B2B and hybrid B2B/B2C storefront architectures",
+      "Performance optimization & Core Web Vitals",
+      "Conversion Rate Optimization built into the foundation",
+      "Scalable, maintainable code aligned with Shopify best practices",
+    ],
+  },
+  {
+    num: "03 / B2B",
+    title: "B2B & Wholesale Commerce",
+    summary: "Wholesale storefronts, customer-specific catalogues, gated pricing, net terms, and quote workflows on Shopify Plus B2B.",
+    points: [
+      "Shopify Plus B2B setup & company account modelling",
+      "Customer-specific pricing, catalogues & price lists",
+      "Net terms, PO checkout, and quote workflows",
+      "ERP / wholesale system integration",
+      "Hybrid B2B/B2C storefront architecture",
+    ],
+  },
+  {
+    num: "04 / Performance",
+    title: "Performance & CRO",
+    summary: "Make a fast store faster. Audit, optimize, and convert — without breaking what works.",
+    points: [
+      "Lighthouse & Core Web Vitals optimization",
+      "Liquid, asset, and third-party script audits",
+      "A/B testing infrastructure & experiment design",
+      "Funnel analytics & checkout conversion work",
+      "PDP, PLP, and cart pattern optimisation",
+    ],
+  },
+  {
+    num: "05 / Stabilization",
+    title: "Post-Launch Stabilization",
+    summary: "We stay through the first 90 days. Stabilization isn't an upsell — it's how the work is finished.",
+    points: [
+      "90-day post-launch ownership window",
+      "Performance & uptime monitoring",
+      "Issue triage, hot-fix deployment & retro",
+      "Roadmap & architecture advisory",
+      "Durable partnership beyond the cutover",
+    ],
+  },
+];
+
+const ServicesPage = () => (
+  <>
+    <NavBar active="services" />
+    <main data-screen-label="Services">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— Capabilities</span>
+            <h1>What we<br /><em>build &amp; rescue.</em></h1>
+          </div>
+          <p className="lede">
+            We're a Shopify Plus partner that does the unglamorous work well: migrating high-stakes catalogues, hardening B2B storefronts, and stabilising launches that other agencies hand off and disappear from.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          {SERVICES_DETAIL.map((s, i) => (
+            <div className="svc-row" key={i}>
+              <div>
+                <span className="num">{s.num}</span>
+              </div>
+              <div>
+                <h3 className="display"><em>{s.title}</em></h3>
+                <p className="summary" style={{ marginTop: 16 }}>{s.summary}</p>
+              </div>
+              <ul>
+                {s.points.map((p, j) => <li key={j}>{p}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{
+            background: "var(--paper)", color: "var(--ink)",
+            border: "1px solid var(--hairline)",
+            borderRadius: 24, padding: "clamp(56px, 8vw, 120px)", position: "relative", overflow: "hidden"
+          }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Start here</span>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>Ready to scope<br /><em>a project?</em></h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+              Tell us where you are. We'll tell you, honestly, whether we're the right partner — and what a sensible plan looks like.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn-primary">Book a migration audit <span className="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ServicesPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

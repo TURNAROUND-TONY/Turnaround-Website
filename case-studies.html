@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+const STUDY_1 = {
+  ref: "CS / 01",
+  url: "ewatchparts.com",
+  industry: "Watch parts · DTC",
+  platform: "BigCommerce → Shopify Plus",
+  duration: "12 weeks",
+  team: "4 engineers, 1 architect",
+  title: ["Migrated a high-SKU,", <em key="e">SEO-dependent</em>, " catalogue with zero downtime."],
+  intro: "ewatchparts.com is a mid-market e-commerce brand serving watchmakers and collectors with a deep, technical catalogue. Their organic traffic was the engine of the business — and a botched migration would erase a decade of compounding SEO equity overnight.",
+  outcome: [
+    { num: "100%", lbl: "Data integrity" },
+    { num: "0",    lbl: "Downtime min" },
+    { num: "0%",   lbl: "Ranking loss" },
+    { num: "12wk", lbl: "End-to-end" },
+  ],
+};
+
+const STUDY_2 = {
+  ref: "CS / 02",
+  url: "yowy.com.au",
+  industry: "Lifestyle · D2C",
+  platform: "Magento → Shopify Plus",
+  duration: "16 weeks",
+  team: "3 engineers, 1 architect",
+  title: ["Replatformed off ", <em key="e">heavily-customised Magento</em>, " — and reclaimed deploy velocity."],
+  intro: "Yowy had outgrown Magento. Years of custom extensions had accumulated as a tax on every deploy, every feature, every audit. The brief was direct: get us onto Shopify Plus, lose the technical debt, and don't break the operations.",
+  outcome: [
+    { num: "↓ 62%", lbl: "Maintenance overhead" },
+    { num: "↑ 38%", lbl: "PageSpeed median" },
+    { num: "↑ 4×",  lbl: "Deploy velocity" },
+    { num: "16wk",  lbl: "End-to-end" },
+  ],
+};
+
+const StudyVisualSEO = () => (
+  <svg viewBox="0 0 800 360" style={{ width: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.4" opacity="0.18"/>
+      </pattern>
+    </defs>
+    <rect width="800" height="360" fill="url(#g1)"/>
+    <g fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" opacity="0.55">
+      <text x="20" y="32">ORGANIC SESSIONS / 90D ROLLING</text>
+      <text x="20" y="345">CUTOVER · APRIL 14</text>
+      <text x="640" y="345" textAnchor="end">—</text>
+    </g>
+    {/* before line — slight rise */}
+    <path d="M 20 240 Q 120 230, 220 220 T 400 200" fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.6"/>
+    {/* dashed cutover */}
+    <line x1="400" y1="60" x2="400" y2="320" stroke="currentColor" strokeDasharray="3 4" opacity="0.4"/>
+    <text x="408" y="74" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" opacity="0.7">CUTOVER</text>
+    {/* after — same trajectory, no break */}
+    <path d="M 400 200 Q 500 195, 600 185 T 780 170" fill="none" stroke="var(--accent)" strokeWidth="1.6"/>
+    {/* annotations */}
+    <g fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" opacity="0.55">
+      <text x="60" y="262">BIGCOMMERCE</text>
+      <text x="500" y="222">SHOPIFY PLUS</text>
+    </g>
+  </svg>
+);
+
+const StudyVisualPlatform = () => (
+  <svg viewBox="0 0 800 360" style={{ width: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
+    <g fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" opacity="0.55">
+      <text x="20" y="32">PLATFORM COST · 12-MONTH ROLLING (NORMALISED)</text>
+      <text x="20" y="345">MAGENTO 2 → SHOPIFY PLUS</text>
+    </g>
+    {/* before stacked bars (high) */}
+    {Array.from({ length: 12 }).map((_, i) => {
+      const h = 180 + Math.sin(i * 0.7) * 18 + (i < 6 ? 30 : 0);
+      return <rect key={`b-${i}`} x={40 + i * 26} y={300 - h} width={18} height={h} fill="currentColor" opacity={0.32}/>;
+    })}
+    {/* after bars (low) */}
+    {Array.from({ length: 12 }).map((_, i) => {
+      const h = 60 + Math.cos(i * 0.5) * 10;
+      return <rect key={`a-${i}`} x={420 + i * 26} y={300 - h} width={18} height={h} fill="currentColor"/>;
+    })}
+    {/* divider */}
+    <line x1="395" y1="60" x2="395" y2="310" stroke="currentColor" strokeDasharray="2 4" opacity="0.4"/>
+    <g fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" opacity="0.55">
+      <text x="40" y="320">BEFORE</text>
+      <text x="420" y="320">AFTER</text>
+    </g>
+  </svg>
+);
+
+const Article = ({ s, Visual, body }) => (
+  <article className="cs-article">
+    <aside className="cs-aside">
+      <div><div className="label">Reference</div><div className="val">{s.ref}</div></div>
+      <div><div className="label">URL</div><div className="val">{s.url}</div></div>
+      <div><div className="label">Industry</div><div className="val">{s.industry}</div></div>
+      <div><div className="label">Platform</div><div className="val">{s.platform}</div></div>
+      <div><div className="label">Duration</div><div className="val">{s.duration}</div></div>
+      <div><div className="label">Team</div><div className="val">{s.team}</div></div>
+    </aside>
+    <div className="cs-body">
+      <h2 className="display">{s.title}</h2>
+      <p style={{ fontSize: 19, color: "var(--ink)", lineHeight: 1.55, maxWidth: "62ch", marginBottom: 40 }}>{s.intro}</p>
+      <div style={{
+        background: "var(--surface)",
+        border: "1px solid var(--hairline)",
+        borderRadius: 16,
+        padding: 32,
+        margin: "32px 0 48px",
+        color: "var(--ink-soft)"
+      }}>
+        <Visual />
+      </div>
+      {body}
+      <div className="cs-outcome">
+        {s.outcome.map((o, i) => (
+          <div className="o" key={i}>
+            <span className="o-num display">{o.num}</span>
+            <span className="o-lbl">{o.lbl}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </article>
+);
+
+const Body1 = (
+  <>
+    <h3>The challenge</h3>
+    <p>The brief landed with three non-negotiables: no measurable loss of organic search rankings, no data discrepancies across products, pricing, or inventory, and no disruption to live sales operations. Any one of those failures would translate directly into lost revenue.</p>
+    <p>The catalogue itself made the work hard. Tens of thousands of SKUs with deep variant trees, heavy use of custom fields, and a backlink profile built up over a decade of technical content. Standard migration tooling was never going to be enough.</p>
+
+    <h3>What we did</h3>
+    <ul>
+      <li>End-to-end, risk-controlled migration plan structured around the TURNAROUND framework.</li>
+      <li>Top-1000 ranking URLs audited and mapped one-to-one with redirect rules tested against historical traffic.</li>
+      <li>Source-to-target field mapping for products, variants, metafields, and inventory locations — reconciled to the row.</li>
+      <li>Two full mock cutovers on staging before touching production DNS, with named owners on every checklist line.</li>
+      <li>90-day post-launch stabilisation: monitoring, hot-fix readiness, and a written retro at day 90.</li>
+    </ul>
+
+    <h3>The outcome</h3>
+    <p>The cutover happened on a Tuesday morning. There was no measurable drop in organic sessions in the 90 days that followed. Every product, variant, and price reconciled. The catalogue is now sitting on an architecture that won't have to be re-built when SKU count doubles.</p>
+  </>
+);
+
+const Body2 = (
+  <>
+    <h3>The challenge</h3>
+    <p>Years of customisation had turned Yowy's Magento install into a maintenance burden. Routine extension upgrades carried real risk. New features took weeks where they should take days. Hosting and infrastructure costs climbed every quarter without a corresponding gain in capability.</p>
+    <p>The team was clear-eyed: the platform itself wasn't the problem — the accumulated technical debt was. The migration had to leave the debt behind, not carry it across.</p>
+
+    <h3>What we did</h3>
+    <ul>
+      <li>Architecture-first replatform plan: every custom Magento extension audited and assigned a Shopify-native replacement before code was written.</li>
+      <li>Catalogue, pricing, and operational parity validated against real production scenarios pre-launch.</li>
+      <li>New theme built lean — performance budgets enforced from day one, not retrofitted after launch.</li>
+      <li>Integrations (ERP, OMS, marketing) re-wired to Shopify-native patterns instead of bespoke middleware.</li>
+      <li>90-day stabilisation retainer with weekly check-ins and full deploy-velocity tracking.</li>
+    </ul>
+
+    <h3>The outcome</h3>
+    <p>Maintenance overhead fell substantially. PageSpeed scores improved across the catalogue. Most tellingly, the team's deploy velocity — the rate at which they ship customer-facing changes — multiplied by roughly 4× in the first quarter post-launch. The platform stopped being a tax on the business.</p>
+  </>
+);
+
+const CSPage = () => (
+  <>
+    <NavBar active="case" />
+    <main data-screen-label="Case Studies">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— Selected Work</span>
+            <h1>Migrations of<br /><em>consequence.</em></h1>
+          </div>
+          <p className="lede">
+            Two long-form studies. Both are real replatforms with real revenue at stake. Each ran end-to-end on the TURNAROUND framework — and each shipped with the same non-negotiable: no loss of business continuity.
+          </p>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingBlock: 0 }}>
+        <div className="container">
+          <Article s={STUDY_1} Visual={StudyVisualSEO}  body={Body1} />
+          <Article s={STUDY_2} Visual={StudyVisualPlatform} body={Body2} />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{ background: "var(--paper)", color: "var(--ink)", border: "1px solid var(--hairline)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Want a study like this?</span>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>Yours could be<br /><em>case 03.</em></h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+              We take a small number of migration engagements per quarter. If you're considering a replatform — or repairing one that didn't go to plan — we'd like to hear about it.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn-primary">Book a migration audit <span className="arrow">→</span></a>
+              <a href="services.html" className="btn btn-ghost">See services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<CSPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

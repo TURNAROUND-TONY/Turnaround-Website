@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Migrations — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+const PHASES = [
+  { num: "01", title: "Assess",    desc: "Audit current platform, integrations, catalog complexity, and traffic patterns. Identify migration risks before any code is written." },
+  { num: "02", title: "Architect", desc: "Map source-to-target data models, design the redirect strategy, and validate Shopify-native replacements for custom logic." },
+  { num: "03", title: "Execute",   desc: "Stage data migrations against production-like environments. Build the new theme. Wire integrations. Run mock cutovers." },
+  { num: "04", title: "Validate",  desc: "Reconcile every record. Validate SEO, schema, and structured data. Sign off operational parity in writing." },
+  { num: "05", title: "Stabilize", desc: "Cutover. 90-day post-launch ownership. Performance tuning, hot-fix readiness, and retros." },
+];
+
+const PLATFORMS = [
+  { name: "BigCommerce",     meta: "→ Shopify Plus" },
+  { name: "Magento 1 / 2",   meta: "→ Shopify Plus" },
+  { name: "Salesforce",      meta: "Commerce Cloud" },
+  { name: "WooCommerce",     meta: "→ Shopify Plus" },
+  { name: "Custom",          meta: "Bespoke stacks" },
+  { name: "Shopify",         meta: "Plus upgrade" },
+];
+
+const CHECKLIST = [
+  { num: "Pre-flight", title: "Catalog audit", desc: "SKUs, variants, metafields, image hierarchies, and inventory locations enumerated and mapped." },
+  { num: "Pre-flight", title: "SEO inventory", desc: "Top 1000 ranking URLs, backlink profile, schema, and canonical structure documented before a single redirect is written." },
+  { num: "Build",     title: "Source-to-target mapping", desc: "Every field in the source platform mapped to its Shopify equivalent — including the gnarly custom ones." },
+  { num: "Build",     title: "Redirect strategy", desc: "301 rules generated, deduplicated, and tested against historical traffic patterns to preserve organic revenue." },
+  { num: "Validate",  title: "Operational parity", desc: "Tax, shipping, fulfilment, ERP, and OMS flows tested against real-world scenarios before go-live." },
+  { num: "Validate",  title: "Mock cutovers", desc: "We rehearse the cutover on staging — twice — before touching DNS." },
+  { num: "Cutover",   title: "Checklist execution", desc: "Step-by-step runbook with named owners. Every step verified before the next begins." },
+  { num: "Post",      title: "90-day stabilization", desc: "Performance monitoring, issue triage, and a retrospective. We don't disappear after launch." },
+];
+
+const MigrationsPage = () => (
+  <>
+    <NavBar active="migrations" />
+    <main data-screen-label="Migrations">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— Platform Migrations</span>
+            <h1>Migrations<br />without <em>regret.</em></h1>
+          </div>
+          <p className="lede">
+            Replatforming an enterprise store is a high-stakes operation. We're the partner you call when downtime, lost rankings, or data drift aren't options. 150+ migrations, 100% data integrity, zero post-launch surprises.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">01 — From</span>
+            <span className="ttl">Platforms we migrate from</span>
+          </div>
+          <div className="platforms-row">
+            {PLATFORMS.map((p, i) => (
+              <div className="platform" key={i}>
+                <span className="name display"><em>{p.name}</em></span>
+                <span className="meta">{p.meta}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">02 — Method</span>
+            <span className="ttl">Five-phase migration process</span>
+          </div>
+          <div className="orbit-rail">
+            {PHASES.map((p, i) => (
+              <div className="orbit-phase" key={i}>
+                <div className="orbit-phase-label">
+                  <span className="mono" style={{ color: "var(--muted)" }}>{p.num}</span>
+                  <span className="display" style={{ fontSize: 32 }}><em>{p.title}</em></span>
+                </div>
+                <p style={{ fontSize: 14, color: "var(--ink-soft)", lineHeight: 1.55 }}>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">03 — Checklist</span>
+            <span className="ttl">A taste of the runbook</span>
+          </div>
+          <div className="checklist-grid">
+            {CHECKLIST.map((c, i) => (
+              <div className="checklist-item" key={i}>
+                <span className="num">{c.num} · {String(i + 1).padStart(2, "0")}</span>
+                <h4><em>{c.title}</em></h4>
+                <p>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{ background: "var(--ink)", color: "var(--bg)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>Considering a migration?</h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, opacity: 0.85 }}>
+              We'll audit your current platform, flag the risks, and tell you — honestly — what a sensible cutover plan looks like. 30 minutes. No deck. No pitch.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn-primary" style={{ background: "var(--bg)", color: "var(--ink)" }}>Book a migration audit <span className="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<MigrationsPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+const FEATURED = {
+  cat: "Migration Playbook",
+  date: "Apr 2026",
+  read: "12 min read",
+  title: "The 1,000-URL audit: how we preserve SEO equity through a Shopify Plus replatform.",
+  dek: "A walkthrough of the redirect-validation workflow we run on every migration — the same one that's kept ranking loss at zero across 150+ replatforms.",
+};
+
+const POSTS = [
+  { cat: "Architecture", date: "Apr 2026", read: "8 min", title: "Designing for the catalogue you'll have in 3 years.", dek: "Why architecture-first migrations cost less than re-architecting twelve months in." },
+  { cat: "B2B",         date: "Mar 2026", read: "10 min", title: "Shopify Plus B2B vs. B2C/B2B hybrid: choosing the right model.", dek: "Company accounts, price lists, and the trade-offs between native B2B and a hybrid storefront." },
+  { cat: "Operations",  date: "Mar 2026", read: "7 min",  title: "The pre-launch parity checklist we sign off in writing.", dek: "Tax, shipping, fulfilment, ERP, OMS — the operational sign-offs that make a cutover boring (the goal)." },
+  { cat: "Performance", date: "Feb 2026", read: "9 min",  title: "Performance budgets in Shopify Plus themes — enforced, not aspirational.", dek: "Why most theme performance work fails post-launch, and the budgets that make it stick." },
+  { cat: "Migration",   date: "Feb 2026", read: "11 min", title: "Two mock cutovers, no surprises.", dek: "What we rehearse on staging — and why we never touch DNS without a written runbook." },
+  { cat: "Stack",       date: "Jan 2026", read: "6 min",  title: "Klaviyo, Recharge, Yotpo: when to integrate, when to defer.", dek: "Tooling decisions that scale with the merchant — not against them." },
+  { cat: "Migration",   date: "Jan 2026", read: "9 min",  title: "Magento → Shopify Plus: the technical-debt audit.", dek: "Most Magento migrations carry the wrong things across. Here's how we strip them." },
+  { cat: "Process",     date: "Dec 2025", read: "5 min",  title: "Why we stay 90 days past launch.", dek: "Stabilisation isn't an upsell. It's how the work is finished." },
+];
+
+const BlogPage = () => (
+  <>
+    <NavBar active="blog" />
+    <main data-screen-label="Journal">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— Journal</span>
+            <h1>Notes on<br />migration, <em>method,</em><br />& Shopify Plus.</h1>
+          </div>
+          <p className="lede">
+            Long-form essays from the engineers and architects shipping our work. Process documentation, post-mortems, and the occasional rant. No SEO-stuffed listicles. No fluff.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <a href="#" className="blog-feature" style={{ textDecoration: "none", color: "inherit" }}>
+            <div className="f-cover" style={{
+              background: "linear-gradient(155deg, #0B1D49 0%, #16315E 50%, #6FA0FF 200%)",
+              display: "flex", alignItems: "flex-end", justifyContent: "flex-start", padding: 32,
+            }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--bg)", opacity: .8 }}>— Featured · {FEATURED.cat}</span>
+            </div>
+            <div>
+              <div className="b-meta" style={{ marginBottom: 24 }}>
+                <span>{FEATURED.cat}</span><span className="dot"></span>
+                <span>{FEATURED.date}</span><span className="dot"></span>
+                <span>{FEATURED.read}</span>
+              </div>
+              <h2 className="display"><em>{FEATURED.title}</em></h2>
+              <p>{FEATURED.dek}</p>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--accent)", marginTop: 28, display: "inline-block" }}>Read essay →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-label">
+            <span className="num">— Recent</span>
+            <span className="ttl">All essays</span>
+          </div>
+          <div className="blog-grid">
+            {POSTS.map((p, i) => (
+              <a key={i} href="#" className="blog-card" style={{ textDecoration: "none", color: "inherit" }}>
+                <div className="b-cover" style={{
+                  background: `linear-gradient(${135 + i * 15}deg, #0B1D49 0%, #16315E 50%, #6FA0FF 220%)`,
+                }}>— {p.cat}</div>
+                <div className="b-meta">
+                  <span>{p.cat}</span><span className="dot"></span>
+                  <span>{p.date}</span><span className="dot"></span>
+                  <span>{p.read}</span>
+                </div>
+                <h3><em>{p.title}</em></h3>
+                <p>{p.dek}</p>
+                <span className="b-readmore">Read essay →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{ background: "var(--paper)", color: "var(--ink)", border: "1px solid var(--hairline)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Subscribe</span>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>One essay,<br /><em>once a month.</em></h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+              No newsletter blasts. No sales drip. Just the long-form pieces, sent the day they ship.
+            </p>
+            <form onSubmit={(e) => { e.preventDefault(); alert("Subscribed."); }} style={{ marginTop: 36, display: "flex", gap: 12, flexWrap: "wrap", maxWidth: 520 }}>
+              <input type="email" required placeholder="you@company.com" style={{
+                flex: 1, minWidth: 240, border: 0, borderBottom: "1px solid var(--hairline-strong)",
+                background: "transparent", padding: "12px 0", fontSize: 16, color: "var(--ink)", outline: "none",
+              }} />
+              <button type="submit" className="btn btn-primary">Subscribe <span className="arrow">→</span></button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<BlogPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

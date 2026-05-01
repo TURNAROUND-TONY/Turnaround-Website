@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+const ContactPage = () => {
+  const [submitted, setSubmitted] = React.useState(false);
+  const onSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+
+  return (
+    <>
+      <NavBar active="contact" />
+      <main data-screen-label="Contact">
+        <section className="page-hero">
+          <div className="container">
+            <div>
+              <span className="pretitle">— Contact</span>
+              <h1>Book a<br /><em>migration audit.</em></h1>
+            </div>
+            <p className="lede">
+              30 minutes. We'll review your current platform, flag the risks, and tell you — honestly — whether a migration makes sense right now. No deck. No pitch. No obligation.
+            </p>
+          </div>
+        </section>
+
+        <section className="section" style={{ paddingBlock: 0 }}>
+          <div className="container">
+            <div className="contact-grid">
+              <div>
+                <span className="eyebrow" style={{ display: "block", marginBottom: 32 }}>— Project brief</span>
+
+                <div style={{
+                  padding: 24,
+                  background: "var(--surface)",
+                  border: "1px solid var(--hairline)",
+                  borderRadius: 16,
+                  marginBottom: 32,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 24,
+                  flexWrap: "wrap",
+                }}>
+                  <div style={{ flex: "1 1 240px" }}>
+                    <span className="eyebrow" style={{ display: "block", marginBottom: 6 }}>— Fastest path</span>
+                    <p style={{ fontSize: 16, color: "var(--ink)", margin: 0, lineHeight: 1.4 }}>
+                      Pick a 30-minute slot that suits you.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (window.Calendly) {
+                        window.Calendly.initPopupWidget({ url: "https://calendly.com/turnaroundexperts/30min?hide_gdpr_banner=1" });
+                      } else {
+                        window.open("https://calendly.com/turnaroundexperts/30min", "_blank");
+                      }
+                    }}
+                  >
+                    Book on Calendly <span className="arrow">→</span>
+                  </button>
+                </div>
+
+                {submitted ? (
+                  <div style={{ padding: "48px 0" }}>
+                    <h2 className="display" style={{ fontSize: 56, marginBottom: 16 }}><em>Got it.</em></h2>
+                    <p style={{ color: "var(--ink-soft)", fontSize: 17, maxWidth: "44ch" }}>
+                      We'll be in touch inside one business day. In the meantime, you can also reach us directly at <a href="mailto:business@turnaroundconsulting.co.in" style={{ borderBottom: "1px solid currentColor" }}>business@turnaroundconsulting.co.in</a>.
+                    </p>
+                  </div>
+                ) : (
+                  <form className="contact-form" onSubmit={onSubmit}>
+                    <label>Name<input type="text" required placeholder="Your name" /></label>
+                    <label>Email<input type="email" required placeholder="you@company.com" /></label>
+                    <label>Company<input type="text" placeholder="Brand / company" /></label>
+                    <label>Current platform
+                      <select defaultValue="">
+                        <option value="" disabled>Select a platform</option>
+                        <option>BigCommerce</option>
+                        <option>Magento 1 / 2</option>
+                        <option>Salesforce Commerce Cloud</option>
+                        <option>WooCommerce</option>
+                        <option>Custom / bespoke stack</option>
+                        <option>Shopify (upgrade to Plus)</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                    <label>Project type
+                      <select defaultValue="">
+                        <option value="" disabled>Select a project</option>
+                        <option>Platform migration</option>
+                        <option>New Shopify Plus build</option>
+                        <option>B2B / wholesale storefront</option>
+                        <option>Performance & CRO</option>
+                        <option>Stabilisation / rescue</option>
+                        <option>Not sure yet</option>
+                      </select>
+                    </label>
+                    <label>Indicative budget
+                      <select defaultValue="">
+                        <option value="" disabled>Select a range</option>
+                        <option>Under $25k</option>
+                        <option>$25k – $75k</option>
+                        <option>$75k – $150k</option>
+                        <option>$150k – $300k</option>
+                        <option>$300k +</option>
+                      </select>
+                    </label>
+                    <label>Tell us about it<textarea rows="5" placeholder="Where you are, where you'd like to go, and what's in the way."></textarea></label>
+                    <button type="submit" className="btn btn-primary">Send brief <span className="arrow">→</span></button>
+                  </form>
+                )}
+              </div>
+
+              <aside className="contact-aside">
+                <h3 className="display"><em>Or, the direct route.</em></h3>
+
+                <div className="row">
+                  <span className="lbl">— New business</span>
+                  <span className="val"><a href="mailto:business@turnaroundconsulting.co.in" style={{ borderBottom: "1px solid var(--hairline-strong)" }}>business@turnaroundconsulting.co.in</a></span>
+                </div>
+                <div className="row">
+                  <span className="lbl">— Engineering & expertise</span>
+                  <span className="val"><a href="mailto:experts@turnaroundommerce.com" style={{ borderBottom: "1px solid var(--hairline-strong)" }}>experts@turnaroundommerce.com</a></span>
+                </div>
+                <div className="row">
+                  <span className="lbl">— Web</span>
+                  <span className="val"><a href="https://turnaroundommerce.com" style={{ borderBottom: "1px solid var(--hairline-strong)" }}>turnaroundommerce.com</a></span>
+                </div>
+                <div className="row" style={{ borderBottom: 0 }}>
+                  <span className="lbl">— Response time</span>
+                  <span className="val">One business day.</span>
+                </div>
+
+                <div style={{
+                  marginTop: 24,
+                  padding: 28,
+                  background: "var(--surface)",
+                  border: "1px solid var(--hairline)",
+                  borderRadius: 16,
+                }}>
+                  <span className="eyebrow" style={{ display: "block", marginBottom: 12 }}>— Capacity</span>
+                  <p style={{ fontSize: 15, color: "var(--ink-soft)", lineHeight: 1.55 }}>
+                    We take a small number of migration engagements each quarter so every project gets senior attention. Currently <strong style={{ color: "var(--ink)" }}>accepting Q3 2026 starts</strong>.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ContactPage />);
+</script>
+<script src="reveal.js" defer></script>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partners — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+// Tier 1 — Platform
+const PLATFORM = [
+  { name: "Shopify",  desc: "Certified Shopify Plus Partner. Vetted for enterprise migrations and Plus-tier builds." },
+];
+// Tier 2 — Channel & Advertising
+const CHANNEL = [
+  { name: "Meta",   desc: "Paid social, Catalog, CAPI integrations for Shopify Plus storefronts." },
+  { name: "Google", desc: "Merchant Center, Performance Max, and analytics integrations." },
+];
+// Tier 3 — Marketing, CRM & Conversion
+const MARKETING = [
+  { name: "Klaviyo",                 desc: "Lifecycle email & SMS for the catalogues we ship." },
+  { name: "Yotpo",                   desc: "Reviews, loyalty, and UGC at scale." },
+  { name: "AI Trillion",             desc: "AI-driven marketing automation across email, SMS, and on-site." },
+  { name: "Botspace",                desc: "WhatsApp commerce and conversational marketing." },
+  { name: "Recurpay Subscriptions",  desc: "Subscriptions and recurring billing for Shopify merchants." },
+];
+// Tier 4 — Migration & Engineering
+const MIGRATION = [
+  { name: "LitExtension",  desc: "Specialist data-migration tooling for cross-platform replatforms." },
+  { name: "Migration Pro", desc: "Magento and BigCommerce → Shopify Plus migration partner." },
+  { name: "Confetti Design Studio", desc: "Long-standing creative & design partner for storefront builds." },
+];
+// Tier 5 — Payments & Cross-border
+const PAYMENTS = [
+  { name: "Razorpay", desc: "Payments and checkout for Shopify Plus stores in India." },
+  { name: "PayPal",   desc: "Global payments and Express Checkout integration." },
+  { name: "Skydo",    desc: "Cross-border payments for export-led D2C brands." },
+];
+
+const Cell = ({ p }) => (
+  <div className="partner-cell">
+    <div>
+      <div className="logo"><em>{p.name.split(" ")[0]}</em>{p.name.includes(" ") && <span className="accent">.</span>}{p.name.includes(" ") && p.name.split(" ").slice(1).join(" ")}</div>
+    </div>
+    <div>
+      <p className="desc">{p.desc}</p>
+      <span className="meta" style={{ marginTop: 14, display: "block" }}>— Partner</span>
+    </div>
+  </div>
+);
+
+const PartnersPage = () => (
+  <>
+    <NavBar active="partners" />
+    <main data-screen-label="Partners">
+      <section className="page-hero">
+        <div className="container">
+          <div>
+            <span className="pretitle">— Partners</span>
+            <h1>The stack<br />we <em>recommend.</em></h1>
+          </div>
+          <p className="lede">
+            We're a certified Shopify Plus partner, and our recommended stack is the same one we use to ship and stabilise our own client engagements. No referral fees we won't disclose. No tool we wouldn't deploy on our own store.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="partner-tier-label">— Platform</div>
+          <div className="partners-grid" style={{ gridTemplateColumns: "1fr" }}>
+            <div className="partner-cell" style={{ minHeight: 280, padding: "72px 48px" }}>
+              <div>
+                <div className="logo" style={{ fontSize: "clamp(40px, 4vw, 64px)" }}><em>Shopify</em> <span className="accent">Plus</span></div>
+                <span className="meta" style={{ marginTop: 16, display: "block" }}>— Certified Plus Partner</span>
+              </div>
+              <p className="desc" style={{ maxWidth: "62ch", fontSize: 15 }}>
+                Vetted for enterprise migrations and Plus-tier builds. Direct access to Shopify's Plus Partner Program, launch engineers, and merchant-success channels — used as a delivery accelerator on every engagement.
+              </p>
+            </div>
+          </div>
+
+          <div className="partner-tier-label">— Channel & Advertising</div>
+          <div className="partners-grid">
+            {CHANNEL.map((p, i) => <Cell key={i} p={p} />)}
+          </div>
+
+          <div className="partner-tier-label">— Marketing, CRM & Conversion</div>
+          <div className="partners-grid">
+            {MARKETING.map((p, i) => <Cell key={i} p={p} />)}
+          </div>
+
+          <div className="partner-tier-label">— Migration & Engineering</div>
+          <div className="partners-grid">
+            {MIGRATION.map((p, i) => <Cell key={i} p={p} />)}
+          </div>
+
+          <div className="partner-tier-label">— Payments & Cross-border</div>
+          <div className="partners-grid">
+            {PAYMENTS.map((p, i) => <Cell key={i} p={p} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="cta-box" style={{ background: "var(--paper)", color: "var(--ink)", border: "1px solid var(--hairline)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+            <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Tooling matters</span>
+            <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>The right stack,<br /><em>chosen carefully.</em></h2>
+            <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+              Choosing tooling on a Plus build is half the architecture decision. We'll audit what you have, recommend what you need, and only deploy what's earned its place.
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn-primary">Talk to us about tooling <span className="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<PartnersPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>

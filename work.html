@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="navy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work — Turnaround</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel">
+
+const PALETTES = [
+  ["#0B1D49", "#6FA0FF"], ["#1A2440", "#A8C4F0"], ["#10316B", "#7FB3FF"],
+  ["#1F2A57", "#BCC9E5"], ["#0E2349", "#5A8FE0"], ["#293B6B", "#D4DEF0"],
+  ["#08183F", "#9CC4FF"], ["#0F2B5C", "#C8D6F0"], ["#16315E", "#88B0E8"],
+  ["#1B2A4E", "#A0BCDF"], ["#0A1F45", "#7AA8E8"], ["#21305A", "#D8E2F2"],
+];
+
+const PROJECTS = [
+  { name: "Ewatchparts",   industry: "Watch Parts",          platform: "BC → Plus",     tag: "Migration" },
+  { name: "Yowy",          industry: "Lifestyle",            platform: "Magento → Plus", tag: "Migration" },
+  { name: "Northwind Co.", industry: "Outdoor Apparel",      platform: "Shopify Plus",   tag: "Build" },
+  { name: "Maison Lior",   industry: "Luxury Beauty",        platform: "Shopify Plus",   tag: "Build" },
+  { name: "Halden",        industry: "Furniture",            platform: "BC → Plus",     tag: "Migration" },
+  { name: "Vasaria",       industry: "Skincare",             platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Atlas Forge",   industry: "Tools & Hardware",     platform: "Magento → Plus", tag: "Migration" },
+  { name: "Brierwood",     industry: "Home Goods",           platform: "Shopify Plus",   tag: "Build" },
+  { name: "Kenji Studio",  industry: "Streetwear",           platform: "Shopify Plus",   tag: "Build" },
+  { name: "Solene",        industry: "Fragrance",            platform: "Shopify Plus",   tag: "Build" },
+  { name: "Rivera Wines",  industry: "Beverage",             platform: "WooCommerce → Plus", tag: "Migration" },
+  { name: "Northrope",     industry: "Menswear",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Petalon",       industry: "Florist",              platform: "Shopify Plus",   tag: "Build" },
+  { name: "Verdani",       industry: "Tea & Botanicals",     platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Kindred Form",  industry: "Furniture",            platform: "Magento → Plus", tag: "Migration" },
+  { name: "Bardot Hotel",  industry: "Hospitality Retail",   platform: "Shopify Plus",   tag: "Build" },
+  { name: "Northbrook",    industry: "Lifestyle",            platform: "BC → Plus",     tag: "Migration" },
+  { name: "Avena",         industry: "Wellness",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Foundry & Sons", industry: "Tools",               platform: "Custom → Plus",  tag: "Migration" },
+  { name: "Heartwood",     industry: "Outdoor",              platform: "Shopify Plus",   tag: "Build" },
+  { name: "Lumen & Co.",   industry: "Lighting",             platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Marais",        industry: "Womenswear",           platform: "Shopify Plus",   tag: "Build" },
+  { name: "Otto",          industry: "Pet",                  platform: "Shopify Plus",   tag: "Build" },
+  { name: "Pinegrove",     industry: "Coffee",               platform: "Shopify Plus",   tag: "Build" },
+  { name: "Quill & Bind",  industry: "Stationery",           platform: "BC → Plus",     tag: "Migration" },
+  { name: "Roan & Cole",   industry: "Childrenswear",        platform: "Shopify Plus",   tag: "Build" },
+  { name: "Saltgrove",     industry: "Skincare",             platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Tideline",      industry: "Surf & Swim",          platform: "Shopify Plus",   tag: "Build" },
+  { name: "Umbra Atelier", industry: "Jewellery",            platform: "Magento → Plus", tag: "Migration" },
+  { name: "Vellum Press",  industry: "Print & Stationery",   platform: "Shopify Plus",   tag: "Build" },
+  { name: "Wayfarers",     industry: "Travel Goods",         platform: "Shopify Plus",   tag: "Build" },
+  { name: "Xander & Co.",  industry: "Footwear",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Yarrow",        industry: "Botanical",            platform: "WooCommerce → Plus", tag: "Migration" },
+  { name: "Zephyr",        industry: "Outerwear",            platform: "Shopify Plus",   tag: "Build" },
+  { name: "Auric Goods",   industry: "Homeware",             platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Briar & Bloom", industry: "Florist",              platform: "BC → Plus",     tag: "Migration" },
+  { name: "Cassia & Vale", industry: "Fragrance",            platform: "Shopify Plus",   tag: "Build" },
+  { name: "Drifthouse",    industry: "Surfwear",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Embry",         industry: "Loungewear",           platform: "Magento → Plus", tag: "Migration" },
+  { name: "Fjordline",     industry: "Outerwear",            platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Goldleaf",      industry: "Jewellery",            platform: "WooCommerce → Plus", tag: "Migration" },
+  { name: "Holm & Hare",   industry: "Homeware",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Iris & Oak",    industry: "Childrenswear",        platform: "Shopify Plus",   tag: "Build" },
+  { name: "Juno Athletic", industry: "Activewear",           platform: "BC → Plus",     tag: "Migration" },
+  { name: "Korr Studio",   industry: "Eyewear",              platform: "Shopify Plus",   tag: "Build" },
+  { name: "Linden Lane",   industry: "Beauty",               platform: "Shopify Plus",   tag: "B2B" },
+  { name: "Mara & Sons",   industry: "Footwear",             platform: "Magento → Plus", tag: "Migration" },
+  { name: "North Loom",    industry: "Textiles",             platform: "Shopify Plus",   tag: "Build" },
+  { name: "Orris",         industry: "Skincare",             platform: "Shopify Plus",   tag: "Build" },
+];
+
+const TAGS = ["All", "Migration", "Build", "B2B"];
+
+const Tile = ({ p, i }) => {
+  const [a, b] = PALETTES[i % PALETTES.length];
+  return (
+    <a href="case-studies.html" className="work-tile" aria-label={`View ${p.name} project`}>
+      <div className="swatch" style={{
+        background: `linear-gradient(155deg, ${a} 0%, ${a} 60%, ${b} 200%)`,
+      }}>
+        <span className="badge">— {String(i + 1).padStart(2, "0")}</span>
+        <span className="name"><em style={{ fontStyle: "italic" }}>{p.name}</em></span>
+      </div>
+      <div className="reveal-meta">
+        <div>
+          <span className="rm-label">— Project / {p.tag}</span>
+          <h4 className="rm-title" style={{ marginTop: 12 }}><em>{p.name}</em></h4>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <span className="rm-platform">{p.industry} · {p.platform}</span>
+          <span className="rm-arrow">→</span>
+        </div>
+      </div>
+    </a>
+  );
+};
+
+const WorkPage = () => {
+  const [filter, setFilter] = React.useState("All");
+  const filtered = filter === "All" ? PROJECTS : PROJECTS.filter(p => p.tag === filter);
+
+  return (
+    <>
+      <NavBar active="work" />
+      <main data-screen-label="Our Work">
+        <section className="page-hero">
+          <div className="container">
+            <div>
+              <span className="pretitle">— Projects / Selected</span>
+              <h1>We lean into<br />every <em>partnership.</em></h1>
+            </div>
+            <p className="lede">
+              A look at recent work for some of the world's most ambitious commerce brands. Migrations of consequence. Builds that won't have to be rebuilt. Storefronts that keep trading the day after launch and the year after launch.
+            </p>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="work-filterbar">
+              <span className="lbl">— Filter</span>
+              {TAGS.map((t) => (
+                <button key={t} className={`work-filter ${filter === t ? "is-on" : ""}`} onClick={() => setFilter(t)}>
+                  {t} {t !== "All" && <span style={{ opacity: 0.5, marginLeft: 6 }}>{PROJECTS.filter(p => p.tag === t).length}</span>}
+                </button>
+              ))}
+              <span style={{ marginLeft: "auto", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--muted)" }}>
+                Showing {filtered.length} of {PROJECTS.length}
+              </span>
+            </div>
+            <div className="work-grid">
+              {filtered.map((p, i) => <Tile key={p.name} p={p} i={i} />)}
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="cta-box" style={{ background: "var(--paper)", color: "var(--ink)", border: "1px solid var(--hairline)", borderRadius: 24, padding: "clamp(56px, 8vw, 120px)" }}>
+              <span className="eyebrow" style={{ display: "block", marginBottom: 24 }}>— Want to see more?</span>
+              <h2 className="display" style={{ fontSize: "clamp(48px, 6vw, 96px)" }}>Read the full<br /><em>case studies.</em></h2>
+              <p style={{ maxWidth: "56ch", marginTop: 24, fontSize: 17, color: "var(--ink-soft)" }}>
+                Two long-form studies of replatforms with real revenue at stake. Both shipped on the TURNAROUND framework — both with the same non-negotiable: no loss of business continuity.
+              </p>
+              <div className="hero-actions" style={{ marginTop: 36 }}>
+                <a href="case-studies.html" className="btn btn-primary">Read case studies <span className="arrow">→</span></a>
+                <a href="contact.html" className="btn btn-ghost">Start a project</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<WorkPage />);
+</script>
+<script src="reveal.js" defer></script>
+</body>
+</html>
